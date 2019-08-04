@@ -3,7 +3,20 @@ library(leaflet)
 library(sp)
 
 # Read in the postcode data
-rawData <- read_csv("Data/postcodes.csv")
+rawData <- read_csv("Data/postcodes.csv", 
+                    col_type = list("Population" = "i",
+                                    "Households" = "i",
+                                    "National Park" = "c",
+                                    "County" = "c",
+                                    "Parish" = "c",
+                                    "Built up area" = "c",
+                                    "Built up sub-division" = "c",
+                                    "Region" = "c",
+                                    "Local authority" = "c",
+                                    "Parish Code" = "c",
+                                    "London zone" = "i"))
+
+
 # Filter so we only have active postcodes in aberdeen city
 activePostcodes <- rawData %>%
   filter(`In Use?` == "Yes") %>% 
